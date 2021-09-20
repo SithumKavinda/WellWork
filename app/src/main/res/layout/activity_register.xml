@@ -26,48 +26,57 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/round_card"
+        android:fadingEdge="vertical|none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/tv_fName"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/round_border"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName"
-        android:padding="10dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="REGISTER"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5" />
 
+
     <EditText
-        android:id="@+id/tv_lName"
+        android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_person_name"
+        android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="Last Name"
+        android:hint="Full Name"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/tv_fName" />
+        app:layout_constraintTop_toTopOf="@+id/header"
+        android:drawableLeft="@drawable/ic_person_name"/>
+
 
     <EditText
         android:id="@+id/tv_telNo"
@@ -79,16 +88,19 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_phone"
+        android:drawablePadding="5dp"
         android:ems="10"
         android:hint="Contact No"
         android:inputType="phone"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lName" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name"
+        android:drawableLeft="@drawable/ic_phone" />
 
     <EditText
-        android:id="@+id/tv_dob"
+        android:id="@+id/tv_age"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -97,23 +109,77 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_date"
+        android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="Date of Birth"
+        android:hint="Age"
         android:inputType="date"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/tv_telNo" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_telNo"
+        android:drawableLeft="@drawable/ic_date" />
 
-    <DatePicker
-        android:id="@+id/dob"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/tv_email"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_card"
-        android:visibility="invisible"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_mail"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/tv_age"
+        android:drawableLeft="@drawable/ic_mail" />
+
+    <EditText
+        android:id="@+id/tv_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/round_border"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="5dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
+    <Button
+        android:id="@+id/btn_register"
+        style="@android:style/Widget.DeviceDefault.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/round_bg"
+        android:includeFontPadding="true"
+        android:text="Register"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintStart_toStartOf="@+id/view5"
-        app:layout_constraintTop_toTopOf="@+id/view5" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

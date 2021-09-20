@@ -79,10 +79,11 @@ public class MainActivity extends AppCompatActivity {
         String passwordInput = password.getText().toString();
         
         if(!passwordInput.isEmpty()){
+            password.setError(null);
             return true;
         }
         else{
-            Toast.makeText(this, "Enter Password!", Toast.LENGTH_SHORT).show();
+            password.setError("This field cannot be empty");
             return false;
         }
     }
@@ -91,15 +92,15 @@ public class MainActivity extends AppCompatActivity {
         String emailInput = email.getText().toString();
 
         if(!emailInput.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-
+            email.setError(null);
             return true;
         }
         else {
             if(emailInput.isEmpty()){
-                Toast.makeText(this, "Enter Email!", Toast.LENGTH_SHORT).show();
+                email.setError("This field cannot be empty");
             }
             else{
-                Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show();
+                email.setError("Invalid Email address");
             }
             return false;
         }
