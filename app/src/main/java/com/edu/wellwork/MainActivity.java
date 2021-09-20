@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Confirmation")
                         .setMessage("Do you need to Register?")
-                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setIcon(android.R.drawable.ic_menu_info_details)
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             @Override
