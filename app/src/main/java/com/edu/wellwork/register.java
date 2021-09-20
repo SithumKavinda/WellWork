@@ -2,6 +2,7 @@ package com.edu.wellwork;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -35,7 +36,7 @@ public class register extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(validateName(name) && validateTel(tel) && validateAge(age) && validateMail(email) && validatePassword(password)){
-                        showText();
+                        openLogin();
                     }
                 }
             });
@@ -45,9 +46,13 @@ public class register extends AppCompatActivity {
         }
     }
 
-    public void showText(){
-        Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
+    //Navigation
+    public void openLogin(){
+        Intent home = new Intent(this, MainActivity.class);
+        startActivity(home);
+        Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show();
     }
+
     //Form Validations
     private boolean validateName(EditText name) {
         String value = name.getText().toString();
