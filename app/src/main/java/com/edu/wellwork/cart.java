@@ -22,7 +22,7 @@ public class cart extends AppCompatActivity {
         botNav = findViewById(R.id.bottom_navigation);
 
         //set home selected
-        botNav.setSelectedItemId(R.id.orders);
+        botNav.setSelectedItemId(R.id.cart);
 
         //perform ItemSelectedListener
         botNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,11 +34,16 @@ public class cart extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
+                    case R.id.prescription:
+                        startActivity(new Intent(getApplicationContext(), prescription.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
                     case R.id.cart:
                         return true;
 
-                    case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), orders.class));
+                    case R.id.feedback:
+                        startActivity(new Intent(getApplicationContext(), feedback.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

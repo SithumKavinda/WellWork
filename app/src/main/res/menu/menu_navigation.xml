@@ -6,11 +6,15 @@
         android:title="Home"
         android:icon="@drawable/ic_home"/>
     <item
+        android:id="@+id/prescription"
+        android:title="Prescription"
+        android:icon="@drawable/ic_prescription"/>
+    <item
         android:id="@+id/cart"
         android:title="Cart"
         android:icon="@drawable/ic_cart"/>
     <item
-        android:id="@+id/orders"
-        android:title="Orders"
-        android:icon="@drawable/ic_status"/>
+        android:id="@+id/feedback"
+        android:title="Feedback"
+        android:icon="@drawable/ic_feedback"/>
 </menu>

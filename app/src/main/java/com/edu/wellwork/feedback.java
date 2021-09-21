@@ -9,20 +9,20 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class orders extends AppCompatActivity {
+public class feedback extends AppCompatActivity {
 
     BottomNavigationView botNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_feedback);
 
         //Initialize Variables
         botNav = findViewById(R.id.bottom_navigation);
 
         //set home selected
-        botNav.setSelectedItemId(R.id.orders);
+        botNav.setSelectedItemId(R.id.feedback);
 
         //perform ItemSelectedListener
         botNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -34,12 +34,17 @@ public class orders extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
+                    case R.id.prescription:
+                        startActivity(new Intent(getApplicationContext(), prescription.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
                     case R.id.cart:
                         startActivity(new Intent(getApplicationContext(), cart.class));
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.orders:
+                    case R.id.feedback:
                         return true;
                 }
 

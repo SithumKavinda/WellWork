@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WellWork">
         <activity
-            android:name=".orders"
+            android:name=".prescription"
+            android:exported="true" />
+        <activity
+            android:name=".feedback"
             android:exported="true" />
         <activity
             android:name=".register"

@@ -9,19 +9,20 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class home extends AppCompatActivity {
+public class prescription extends AppCompatActivity {
 
     BottomNavigationView botNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_prescription);
 
         //Initialize Variables
         botNav = findViewById(R.id.bottom_navigation);
 
         //set home selected
-        botNav.setSelectedItemId(R.id.home);
+        botNav.setSelectedItemId(R.id.prescription);
 
         //perform ItemSelectedListener
         botNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -29,11 +30,11 @@ public class home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
+                        startActivity(new Intent(getApplicationContext(), home.class));
+                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.prescription:
-                        startActivity(new Intent(getApplicationContext(), prescription.class));
-                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.cart:
