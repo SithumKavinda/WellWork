@@ -121,7 +121,7 @@ public class register extends AppCompatActivity {
             return false;
         }
         else if(!Patterns.EMAIL_ADDRESS.matcher(value).matches()){
-            email.setError("Ivalid Email address");
+            email.setError("Invalid Email address");
             return false;
         }
         else{
@@ -149,7 +149,7 @@ public class register extends AppCompatActivity {
             return false;
         }
         else if(!value.matches(regexRules)){
-            password.setError("Password should contain at least 1 special character,No whitespaces & Must have more than 4 characters");
+            password.setError("Password shouldn't contain whitespaces & Must have more than 4 characters");
             return false;
         }
         else{
