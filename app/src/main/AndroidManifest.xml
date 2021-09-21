@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WellWork">
         <activity
+            android:name=".orders"
+            android:exported="true" />
+        <activity
             android:name=".register"
             android:exported="true" />
         <activity

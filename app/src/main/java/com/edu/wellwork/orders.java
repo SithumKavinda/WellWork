@@ -9,14 +9,14 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class cart extends AppCompatActivity {
+public class orders extends AppCompatActivity {
 
     BottomNavigationView botNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        setContentView(R.layout.activity_order);
 
         //Initialize Variables
         botNav = findViewById(R.id.bottom_navigation);
@@ -35,11 +35,11 @@ public class cart extends AppCompatActivity {
                         return true;
 
                     case R.id.cart:
+                        startActivity(new Intent(getApplicationContext(), cart.class));
+                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.orders:
-                        startActivity(new Intent(getApplicationContext(), orders.class));
-                        overridePendingTransition(0,0);
                         return true;
                 }
 
