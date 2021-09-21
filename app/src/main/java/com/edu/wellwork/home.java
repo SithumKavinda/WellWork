@@ -1,54 +1,56 @@
+/*References
+*   https://youtu.be/tPV8xA7m-iw - Open navigation panel Items as Fragments
+*/
+
 package com.edu.wellwork;
+
+import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class home extends AppCompatActivity {
 
-    BottomNavigationView botNav;
+    BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //Initialize Variables
-        botNav = findViewById(R.id.bottom_navigation);
+        bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        //set home selected
-        botNav.setSelectedItemId(R.id.home);
-
-        //perform ItemSelectedListener
-        botNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        return true;
-
-                    case R.id.prescription:
-                        startActivity(new Intent(getApplicationContext(), prescription.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.cart:
-                        startActivity(new Intent(getApplicationContext(), cart.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.feedback:
-                        startActivity(new Intent(getApplicationContext(), feedback.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-
-                return false;
-            }
-        });
+        //Default page is Home page now
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_home()).commit();
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
+
+            switch (item.getItemId()){
+                case R.id.home:
+                    selectedFragment = new fragment_home();
+                    break;
+                case R.id.prescription:
+                    selectedFragment = new fragment_prescription();
+                    break;
+                case R.id.cart:
+                    selectedFragment = new fragment_cart();
+                    break;
+                case R.id.feedback:
+                    selectedFragment = new fragment_reviews();
+                    break;
+            }
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+
+            return true;
+        }
+    };
 }
