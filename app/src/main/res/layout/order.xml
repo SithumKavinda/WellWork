@@ -3,23 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_margin="15dp"
     android:backgroundTint="@color/order_card_background"
     app:cardCornerRadius="10dp"
-    app:cardElevation="8dp"
+    app:cardElevation="200dp"
     android:padding="10dp">
 
     <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
             android:layout_gravity="center"
+            android:padding="5dp"
             android:gravity="center">
 
 
@@ -100,15 +108,11 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="0"/>
-
             <!--Total price field-->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -136,15 +140,6 @@
 
             </LinearLayout>
 
-            <!--Delete button field-->
-            <!--<LinearLayout
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:layout_gravity="right">
-
-            </LinearLayout>-->
-
         </LinearLayout>
 
         <View
@@ -152,6 +147,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
+        <!--Delete Button field-->
         <LinearLayout
             android:layout_width="50dp"
             android:layout_height="match_parent"
