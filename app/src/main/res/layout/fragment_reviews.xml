@@ -17,12 +17,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAddReview"
         android:layout_width="305dp"
-        android:layout_height="47dp"
+        android:layout_height="48dp"
         android:layout_marginStart="52dp"
         android:layout_marginLeft="52dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="54dp"
         android:layout_marginRight="54dp"
         android:layout_marginBottom="90dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/ratingBarDisplay"
         android:layout_width="246dp"
         android:layout_height="50dp"
         android:layout_marginStart="82dp"
@@ -48,22 +48,41 @@
         android:stepSize="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAllStr"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewAllStr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="177dp"
+        android:layout_marginLeft="177dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginRight="177dp"
+        android:layout_marginBottom="15dp"
+        android:textAppearance="?android:textAppearanceMedium"
         android:text="TextView"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="149dp" />
+        app:layout_constraintBottom_toTopOf="@+id/ratingBarDisplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewAllRvi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginRight="177dp"
+        android:layout_marginBottom="86dp"
+        android:textAppearance="?android:textAppearanceMedium"
         android:text="TextView"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="253dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarDisplay" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
