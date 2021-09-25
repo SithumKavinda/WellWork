@@ -76,7 +76,7 @@
 
                 <Button
                     android:id="@+id/edit"
-                    android:layout_width="match_parent"
+                    android:layout_width="99dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="Edit Details"
@@ -91,15 +91,15 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Delete Details"
-                android:textColor="#FFFFFF"
-                app:backgroundTint="@android:color/holo_red_light"
-                app:cornerRadius="10dp" />
+                <Button
+                    android:id="@+id/delete"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Delete Details"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="@android:color/holo_red_light"
+                    app:cornerRadius="10dp" />
         </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
