@@ -1,4 +1,29 @@
 <resources>
     <string name="app_name">WellWork</string>
-
+    <string name="p_header">ADD PRESCRIPTION</string>
+    <string name="btn_pSubmit">Submit</string>
+    <string name="btn_deletePrescription">Delete Prescription</string>
+    <string name="et_text">Enter medicine name</string>
+    <string name="header_myPrescription">My Prescription</string>
+    <string name="tv_pIntro1">" Saves your prescriptions"</string>
+    <string name="tv_pintro1">Save your prescriptions!</string>
+    <string name="tv_pIntro2">All your history saved in one place  and with you at all times.</string>
+    <string name="btn_addPrescription">Add prescription</string>
+    <string name="btn_myPrescription">My Prescription</string>
+    <string name="btn_addP">Prescription</string>
+    <string name="p_headerNew">What\'s in your prescription?</string>
+    <string name="et_textNew">Enter medicine name</string>
+    <string name="btn_prescriptionSubmit">Add</string>
+    <string name="tv_m1">Medicine 01:</string>
+    <string name="tv_m2">Medicine 02:</string>
+    <string name="tv_m3">Medicine 03:</string>
+    <string name="tv_m4">Medicine 04:</string>
+    <string name="tv_m5">Medicine 05:</string>
+    <string name="btn_veiwP">View Prescription</string>
+    <string name="btn_view">View</string>
+    <string name="btn_editP">Edit</string>
+    <string name="btn_deleteP">Delete</string>
+    <string name="header_edit">Edit Prescription</string>
+    <string name="btn_eSave" />
+    <string name="btn_eSave2">Save</string>
 </resources>
