@@ -10,14 +10,57 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class fragment_reviews extends Fragment {
     private Button button;
+
+    RecyclerView recyclerView;
+    DatabaseReference databaseReference;
+    Myadapter myadapter;
+    ArrayList<ReviewDet> list;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_reviews,container,false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        databaseReference = FirebaseDatabase.getInstance().getReference("ReviewDet");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        list = new ArrayList<>();
+        myadapter = new Myadapter(getContext(),list);
+        recyclerView.setAdapter(myadapter);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                    ReviewDet reviewDet = dataSnapshot.getValue(ReviewDet.class);
+                    list.add(reviewDet);
+                }
+                myadapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         button = (Button) view.findViewById(R.id.buttonAddReview);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
