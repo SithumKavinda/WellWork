@@ -2,18 +2,10 @@ package com.edu.wellwork;
 
 public class Orders {
 
-    public String /*orderId,*/ itemName, qty, unitPrice, totalPrice;
+    public String itemName, qty, unitPrice, totalPrice;
 
     public Orders() {
     }
-
-    /*public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }*/
 
     public String getItemName() {
         return itemName;
