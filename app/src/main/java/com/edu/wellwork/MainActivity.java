@@ -1,8 +1,5 @@
 package com.edu.wellwork;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Go inside the applications
                 if(validateEmail(email) && validatePassword(password)) {
-                    //Navigate to the Form home
-                    openHomePage();
+
+                    if(validateCredentials(email.getText().toString(), password.getText().toString())){
+                        openHomePage();
+                    }
                 }
             }
         });
@@ -104,5 +113,28 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         }
+    }
+
+    public boolean validateCredentials(String email, String password){
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("User");
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                snapshot.getValue(users.class).toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Connection Error!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        users user = new users();
+
+        if(email == user.getUsername().toString() && password == user.getPassword().toString()){
+            return true;
+        }
+
+        return false;
     }
 }

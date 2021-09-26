@@ -1,16 +1,17 @@
 package com.edu.wellwork;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class register extends AppCompatActivity {
 
@@ -36,6 +37,8 @@ public class register extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if(validateName(name) && validateTel(tel) && validateAge(age) && validateMail(email) && validatePassword(password)){
+                        registerUser(name.getText().toString(), tel.getText().toString(), age.getText().toString(),
+                        email.getText().toString(), password.getText().toString());
                         openLogin();
                     }
                 }
@@ -156,5 +159,16 @@ public class register extends AppCompatActivity {
             password.setError(null);
             return true;
         }
+    }
+
+    public boolean registerUser(String name, String pNo, String age, String email, String password){
+
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("User");
+        database.setValue(users.class).addOnSuccessListener(success ->
+        {
+            Toast.makeText(register.this, "Registered Succefully!", Toast.LENGTH_SHORT).show();
+        });
+
+        return true;
     }
 }

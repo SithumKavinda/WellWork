@@ -39,11 +39,10 @@ public class DBCart {
         });
     }
 
-    public void removeOrder(View view, String medName){
-        database = FirebaseDatabase.getInstance().getReference("Orders").child(medName);
-        database.removeValue().addOnSuccessListener(yes->
-        {
-            Toast.makeText(view.getContext(), medName+" Parent "+ database.getRoot().toString(), Toast.LENGTH_SHORT).show();
-        });
+    public void removeOrder(View view, String id){
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Orders");
+        database.child(id).removeValue();
+
+        Toast.makeText(view.getContext(), "Removed Successful!", Toast.LENGTH_SHORT).show();
     }
 }
