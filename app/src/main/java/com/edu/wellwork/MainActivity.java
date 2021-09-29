@@ -9,19 +9,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
+
+    //Firebase Authentication
+    private FirebaseAuth mAuth;
 
     Button submit;
     EditText email, password;
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.inputMail);
         password = findViewById(R.id.inputPassword);
         register = findViewById(R.id.Register);
+        mAuth = FirebaseAuth.getInstance();
 
         //Confirm Dialog view
         confirmDialog = new Dialog(MainActivity.this);
@@ -64,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         dialog_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "User pressed cancel", Toast.LENGTH_SHORT).show();
                 confirmDialog.dismiss();
             }
         });
@@ -74,35 +79,120 @@ public class MainActivity extends AppCompatActivity {
         registerDialog.setContentView(R.layout.register_card);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            registerDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.dialog_background));
+            registerDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.dialog_back_reg));
         }
 
         registerDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         registerDialog.setCancelable(true);
         registerDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
+        EditText FullName, ContactNo, Email, Password;
+        FullName = registerDialog.findViewById(R.id.tv_name);
+        ContactNo = registerDialog.findViewById(R.id.tv_contactNo);
+        Email = registerDialog.findViewById(R.id.tv_email);
+        ProgressBar pb = registerDialog.findViewById(R.id.reg_progressBar);
+        Password = registerDialog.findViewById(R.id.tv_password);
         Button cardRegisterBtn = registerDialog.findViewById(R.id.btn_register);
 
         cardRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Register Button Pressed", Toast.LENGTH_SHORT).show();
-                registerDialog.dismiss();
+                String name = FullName.getText().toString();
+                String phone = ContactNo.getText().toString();
+                String regMail = Email.getText().toString();
+                String regPassword = Password.getText().toString();
+
+                //Validations
+                if (name.isEmpty()){
+                    FullName.setError("Full name is required!");
+                    FullName.requestFocus();
+                    return;
+                }
+
+                if (phone.isEmpty()){
+                    ContactNo.setError("Contact number is required!");
+                    ContactNo.requestFocus();
+                    return;
+                }
+
+                if(phone.length() < 10){
+                    ContactNo.setError("Contact number should have 10 digits");
+                    ContactNo.requestFocus();
+                    return;
+                }
+
+                if (regMail.isEmpty()){
+                    Email.setError("Email address is required!");
+                    Email.requestFocus();
+                    return;
+                }
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(regMail).matches()){
+                    Email.setError("Invalid Email Address");
+                    Email.requestFocus();
+                    return;
+                }
+
+                if (regPassword.isEmpty()){
+                    Password.setError("Password is required!");
+                    Password.requestFocus();
+                    return;
+                }
+
+                if(regPassword.length() < 6){
+                    Password.setError("Password should contain more than 8 elements");
+                    Password.requestFocus();
+                    return;
+                }
+
+                if(!name.isEmpty() && !phone.isEmpty() && !regMail.isEmpty() && !regPassword.isEmpty() && phone.length() >= 10 && Patterns.EMAIL_ADDRESS.matcher(regMail).matches() && regPassword.length() >= 6){
+
+                    //Show progress bar until user details goes to the database
+                    pb.setVisibility(View.VISIBLE);
+
+                    //Send data to the Firebase Authentication
+                    mAuth.createUserWithEmailAndPassword(Email.getText().toString(), Password.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(task.isSuccessful()){
+                                        users user = new users(FullName.getText().toString(), ContactNo.getText().toString(), Email.getText().toString());
+
+                                        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Users");
+                                        database
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(MainActivity.this, "Registered Successfully!", Toast.LENGTH_SHORT).show();
+                                                pb.setVisibility(View.GONE);
+                                                registerDialog.dismiss();
+
+                                                //Redirected to Login page here
+
+                                            }
+                                            else{
+                                                Toast.makeText(MainActivity.this, "Register Failed!\n"+task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                                pb.setVisibility(View.GONE);
+                                            }
+                                        }
+                                    });
+                                    }
+                                }
+                            });
+                }
             }
         });
-
-
 
         //Submit button onclick
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Go inside the applications
-                if(validateEmail(email) && validatePassword(password)) {
 
-                    if(validateCredentials(email.getText().toString(), password.getText().toString())){
-                        openHomePage();
-                    }
+                if(validateEmail(email) && validatePassword(password)) {
+                    openHomePage();
                 }
             }
         });
@@ -132,6 +222,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             password.setError("This field cannot be empty");
+            password.requestFocus();
             return false;
         }
     }
@@ -149,31 +240,9 @@ public class MainActivity extends AppCompatActivity {
             }
             else{
                 email.setError("Invalid Email address");
+                email.requestFocus();
             }
             return false;
         }
-    }
-
-    public boolean validateCredentials(String email, String password){
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("User");
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                snapshot.getValue(users.class).toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Connection Error!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        users user = new users();
-
-        if(email == user.getUsername().toString() && password == user.getPassword().toString()){
-            return true;
-        }
-
-        return false;
     }
 }
