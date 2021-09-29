@@ -9,8 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="inactive">#A1FFFFFF</color>
-    <color name="colorPrimary">#8095FF</color>
+    <color name="colorPrimary">#8095ff</color>
     <color name="colorPrimaryDark">#313335</color>
     <color name="card">#E1FFFFFF</color>
-    <color name="order_card_background">#BEFFFFFF</color>
+    <color name="order_card_background">#B2FFFFFF</color>
+    <color name="cancel_btn_color">#BA5151</color>
 </resources>

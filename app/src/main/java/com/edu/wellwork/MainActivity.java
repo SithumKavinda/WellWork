@@ -1,17 +1,18 @@
 package com.edu.wellwork;
 
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Button submit;
     EditText email, password;
     TextView register;
+    Dialog confirmDialog, registerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,61 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.inputMail);
         password = findViewById(R.id.inputPassword);
         register = findViewById(R.id.Register);
+
+        //Confirm Dialog view
+        confirmDialog = new Dialog(MainActivity.this);
+        confirmDialog.setContentView(R.layout.custom_dialog);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            confirmDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.dialog_background));
+        }
+
+        confirmDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        confirmDialog.setCancelable(true);
+        confirmDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        Button dialog_confirm = confirmDialog.findViewById(R.id.confirm);
+        Button dialog_cancel = confirmDialog.findViewById(R.id.cancel);
+
+        dialog_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmDialog.dismiss();
+                registerDialog.show();
+            }
+        });
+
+        dialog_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "User pressed cancel", Toast.LENGTH_SHORT).show();
+                confirmDialog.dismiss();
+            }
+        });
+
+        //Register Dialog view
+        registerDialog = new Dialog(MainActivity.this);
+        registerDialog.setContentView(R.layout.register_card);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            registerDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.dialog_background));
+        }
+
+        registerDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        registerDialog.setCancelable(true);
+        registerDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
+
+        Button cardRegisterBtn = registerDialog.findViewById(R.id.btn_register);
+
+        cardRegisterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Register Button Pressed", Toast.LENGTH_SHORT).show();
+                registerDialog.dismiss();
+            }
+        });
+
+
 
         //Submit button onclick
         submit.setOnClickListener(new View.OnClickListener() {
@@ -54,20 +111,7 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Confirmation")
-                        .setMessage("Do you need to Register?")
-                        .setIcon(android.R.drawable.ic_menu_info_details)
-
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                openRegisterPage();
-                            }
-                        })
-
-                        .setNegativeButton(android.R.string.no,null).show();
+                confirmDialog.show();
             }
         });
     }
@@ -76,11 +120,6 @@ public class MainActivity extends AppCompatActivity {
     private void openHomePage() {
         Intent home = new Intent(this, home.class);
         startActivity(home);
-    }
-
-    private void openRegisterPage(){
-        Intent register = new Intent(this, register.class);
-        startActivity(register);
     }
 
     //Form validations
