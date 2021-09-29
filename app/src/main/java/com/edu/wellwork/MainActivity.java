@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     EditText email, password;
     TextView register;
     Dialog confirmDialog, registerDialog;
+    ProgressBar progressBar_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.inputMail);
         password = findViewById(R.id.inputPassword);
         register = findViewById(R.id.Register);
+        progressBar_login = findViewById(R.id.pb_login);
         mAuth = FirebaseAuth.getInstance();
 
         //Confirm Dialog view
@@ -192,7 +195,28 @@ public class MainActivity extends AppCompatActivity {
                 //Go inside the applications
 
                 if(validateEmail(email) && validatePassword(password)) {
-                    openHomePage();
+
+                    progressBar_login.setVisibility(View.VISIBLE);
+
+                    mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString().trim())
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(task.isSuccessful()){
+                                        openHomePage();
+                                        progressBar_login.setVisibility(View.GONE);
+                                    }
+                                    else{
+                                        Toast.makeText(MainActivity.this, "Check Credentials", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    progressBar_login.setVisibility(View.GONE);
+                                }
+                            });
                 }
             }
         });
