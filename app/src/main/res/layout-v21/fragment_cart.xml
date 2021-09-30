@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DADADA">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/layout_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_card"
+        android:background="@color/white"/>
+
+    <ProgressBar
+        android:id="@+id/pb_cart"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/cancel_btn_color"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginBottom="40dp">
+
+        <LinearLayout
+            android:id="@+id/layout_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="15dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:weightSum="8"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:text="Total Cost"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="30sp"
+                        android:layout_weight="4"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp" />
+
+                    <TextView
+                        android:id="@+id/txt_finalPrice"
+                        android:text="0.00"
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="30sp"
+                        android:layout_weight="4"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:layout_width="0dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_order"
+                android:text="Proceed to Pay"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

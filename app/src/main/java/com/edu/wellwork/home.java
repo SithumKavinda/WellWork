@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class home extends AppCompatActivity {
 
@@ -26,6 +27,13 @@ public class home extends AppCompatActivity {
 
         //Default page is Home page now
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_home()).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        FirebaseAuth.getInstance().signOut();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

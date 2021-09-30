@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
-    android:backgroundTint="@color/order_card_background"
+    android:backgroundTint="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="200dp"
     android:padding="10dp">

@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
     //Firebase Authentication
-    private FirebaseAuth mAuth;
+    public FirebaseAuth mAuth;
 
     Button submit;
     EditText email, password;

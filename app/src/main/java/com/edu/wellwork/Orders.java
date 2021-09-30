@@ -1,41 +1,40 @@
 package com.edu.wellwork;
 
-public class Orders {
+public class Orders{
 
-    public String itemName, qty, unitPrice, totalPrice;
+    public String name;
+    public String qty;
+    public String unitPrice;
+    public String total;
 
     public Orders() {
     }
 
-    public String getItemName() {
-        return itemName;
+    public Orders(String name, String qty, String unitPrice, String total) {
+        this.name = name;
+        this.qty = qty;
+        this.unitPrice = unitPrice;
+        this.total = total;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public Orders(String itemName, String qty) {
+        this.name = itemName;
+        this.qty = qty;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getQty() {
         return qty;
     }
 
-    public void setQty(String qty) {
-        this.qty = qty;
-    }
-
     public String getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public String getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
+    public String getTotal() {
+        return total;
     }
 }
