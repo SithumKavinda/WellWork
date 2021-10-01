@@ -10,14 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
 
 public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder> {
 
     Context context;
     ArrayList<Orders> list;
+
 
     public Cart_adapter(Context context, ArrayList<Orders> list) {
         this.context = context;
@@ -39,17 +38,18 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
         holder.unitPrice.setText(order.getUnitPrice());
         holder.totPrice.setText(order.getTotal());
         
-        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
+        /*holder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String id = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
-                /*FirebaseDatabase.getInstance().getReference("Prescription").child(id).setValue(null);*/
+                *//*String id = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+                FirebaseDatabase.getInstance().getReference("Prescription").child(id).setValue(null);*//*
                 //Add new medicines into the database
                 //Create the same to the one more child positions
                 //Add animations to the Cart page
                 //Add start page with logo when start the application
+                Toast.makeText(context, order.getName(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView iname, qty, unitPrice, totPrice, grandTot;
+        TextView iname, qty, unitPrice, totPrice;
         Button btn_delete;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -69,7 +69,6 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
             qty = itemView.findViewById(R.id.tv_qty);
             unitPrice = itemView.findViewById(R.id.tv_unitPrice);
             totPrice = itemView.findViewById(R.id.tv_totalPrice);
-            grandTot = itemView.findViewById(R.id.txt_finalPrice);
             btn_delete = itemView.findViewById(R.id.btn_remove);
         }
     }

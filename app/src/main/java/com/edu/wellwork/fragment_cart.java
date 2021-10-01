@@ -35,6 +35,7 @@ public class fragment_cart extends Fragment {
     DatabaseReference database;
     ArrayList<Orders> list;
     Context context;
+    GrandTotal gt;
 
     @Nullable
     @Override
@@ -50,6 +51,7 @@ public class fragment_cart extends Fragment {
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
 
         database = FirebaseDatabase.getInstance().getReference().child("Prescription").child(userid);
+
 
         order_list.setHasFixedSize(true);
         order_list.setLayoutManager(new LinearLayoutManager(context));
@@ -71,6 +73,13 @@ public class fragment_cart extends Fragment {
                 adapter.notifyDataSetChanged();
                 pb_cart.setVisibility(View.GONE);
 
+                //Grand total
+                int x = list.size() - 1;
+
+                gt = new GrandTotal();
+                String grandTotal = gt.countGtot(list, x);
+
+                txt_grand_total.setText(grandTotal);
             }
 
             @Override
