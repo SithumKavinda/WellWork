@@ -1,3 +1,8 @@
+/*References
+* Custom Progress bar - https://github.com/ybq/Android-SpinKit
+*/
+
+
 package com.edu.wellwork;
 
 import android.app.Dialog;
@@ -9,13 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     EditText email, password;
     TextView register;
     Dialog confirmDialog, registerDialog;
-    ProgressBar progressBar_login;
+    SpinKitView progressBar_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         FullName = registerDialog.findViewById(R.id.tv_name);
         ContactNo = registerDialog.findViewById(R.id.tv_contactNo);
         Email = registerDialog.findViewById(R.id.tv_email);
-        ProgressBar pb = registerDialog.findViewById(R.id.reg_progressBar);
+        SpinKitView pb = registerDialog.findViewById(R.id.reg_progressBar);
         Password = registerDialog.findViewById(R.id.tv_password);
         Button cardRegisterBtn = registerDialog.findViewById(R.id.btn_register);
 

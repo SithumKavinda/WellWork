@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +29,7 @@ public class fragment_cart extends Fragment {
 
     TextView txt_grand_total;
     Button btn_pay;
-    ProgressBar pb_cart;
+    SpinKitView pb_cart;
     RecyclerView order_list;
     Cart_adapter adapter;
     DatabaseReference database;
@@ -91,7 +91,7 @@ public class fragment_cart extends Fragment {
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Pressed Proceed to payment button", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Proceed to Payment page", Toast.LENGTH_SHORT).show();
             }
         });
 

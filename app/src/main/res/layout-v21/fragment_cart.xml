@@ -14,14 +14,15 @@
         android:layout_above="@+id/bottom_card"
         android:background="@color/white" />
 
-    <ProgressBar
+    <com.github.ybq.android.spinkit.SpinKitView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/pb_cart"
-        style="@android:style/Widget.DeviceDefault.ProgressBar.Large"
+        style="@style/SpinKitView.WanderingCubes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_centerInParent="true"
-        android:backgroundTint="@color/cancel_btn_color"/>
+        app:SpinKit_Color="@color/colorPrimary"
+        android:visibility="gone"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottom_card"
