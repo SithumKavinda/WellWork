@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class GrandTotal {
 
-    double tot = 0.0;
+    double tot = 0.00;
 
     public GrandTotal() {
     }
