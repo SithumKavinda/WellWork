@@ -5,22 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.ybq.android.spinkit.SpinKitView;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 
 public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder> {
 
+    SpinKitView pbDelete;
     Context context;
     ArrayList<Orders> list;
+    DatabaseReference reference;
 
 
-    public Cart_adapter(Context context, ArrayList<Orders> list) {
+    public Cart_adapter(Context context, ArrayList<Orders> list, SpinKitView pbDelete) {
         this.context = context;
         this.list = list;
+        this.pbDelete = pbDelete;
     }
 
     @NonNull
@@ -31,25 +38,12 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         Orders order = list.get(position);
         holder.iname.setText(order.getName());
         holder.qty.setText(order.getQty());
         holder.unitPrice.setText(order.getUnitPrice());
         holder.totPrice.setText(order.getTotal());
-        
-        /*holder.btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                *//*String id = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
-                FirebaseDatabase.getInstance().getReference("Prescription").child(id).setValue(null);*//*
-                //Add new medicines into the database
-                //Create the same to the one more child positions
-                //Add animations to the Cart page
-                //Add start page with logo when start the application
-                Toast.makeText(context, order.getName(), Toast.LENGTH_SHORT).show();
-            }
-        });*/
     }
 
     @Override
@@ -61,6 +55,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
 
         TextView iname, qty, unitPrice, totPrice;
         Button btn_delete;
+        LinearLayout orderCard;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +65,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
             unitPrice = itemView.findViewById(R.id.tv_unitPrice);
             totPrice = itemView.findViewById(R.id.tv_totalPrice);
             btn_delete = itemView.findViewById(R.id.btn_remove);
+            orderCard = itemView.findViewById(R.id.layout_order);
         }
     }
 }

@@ -27,50 +27,64 @@ import java.util.ArrayList;
 
 public class fragment_cart extends Fragment {
 
+    /*Defining variables for connect UI and java classes*/
     TextView txt_grand_total;
     Button btn_pay;
-    SpinKitView pb_cart;
+    SpinKitView pb_cart;        //Progress bar
     RecyclerView order_list;
-    Cart_adapter adapter;
-    DatabaseReference database;
-    ArrayList<Orders> list;
-    Context context;
+
+    /*Variables that are needed to implement the scenario*/
+    Cart_adapter adapter;       //Adapter class for recycler view
+    DatabaseReference database; //Database
+    ArrayList<Orders> list;     //ArrayList for store the model class objects which are filled by firebase database data
+    Context context;            //Context of this java class
     GrandTotal gt;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //Open this class's UI as a fragment
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         context = container.getContext();
 
+        //Components declarations
         btn_pay = view.findViewById(R.id.btn_order);
         txt_grand_total = view.findViewById(R.id.txt_finalPrice);
         pb_cart = view.findViewById(R.id.pb_cart);
         order_list = view.findViewById(R.id.layout_item);
 
+        //Getting User ID of currently logged in user
         String userid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
 
+        //Database Connection
         database = FirebaseDatabase.getInstance().getReference().child("Prescription").child(userid);
 
-
+        //Recycler view Fixing
         order_list.setHasFixedSize(true);
         order_list.setLayoutManager(new LinearLayoutManager(context));
 
+        //Define array and set this page context and arrayList in to the adapter class constructor
         list = new ArrayList<>();
-        adapter = new Cart_adapter(context, list);
+        adapter = new Cart_adapter(context, list, pb_cart);
         order_list.setAdapter(adapter);
 
+        //Set the visibility of progress bar to visible
         pb_cart.setVisibility(View.VISIBLE);
 
+        //Retrieve data from firebase db and insert them into arrayList as model class objects
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                //Iterate the function to read all the data until the last data of the node
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Orders order = dataSnapshot.getValue(Orders.class);
                     list.add(order);
                 }
+                //Notify adapter that the data retrieve has done
                 adapter.notifyDataSetChanged();
+
+                //Set the visibility of Progress bar as GONE
                 pb_cart.setVisibility(View.GONE);
 
                 //Grand total
@@ -79,7 +93,7 @@ public class fragment_cart extends Fragment {
                 gt = new GrandTotal();
                 String grandTotal = gt.countGtot(list, x);
 
-                txt_grand_total.setText(grandTotal);
+                txt_grand_total.setText(grandTotal);    //Set the Grand total to the Cart UI
             }
 
             @Override
@@ -87,10 +101,12 @@ public class fragment_cart extends Fragment {
                 Toast.makeText(context, "Connection Error", Toast.LENGTH_SHORT).show();
             }
         });
-        
+
+        //This onClickListener will proceed user to Payment UI
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //This Toast should be replaced with the intent
                 Toast.makeText(context, "Proceed to Payment page", Toast.LENGTH_SHORT).show();
             }
         });
