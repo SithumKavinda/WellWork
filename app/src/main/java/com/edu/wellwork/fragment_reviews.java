@@ -41,7 +41,7 @@ public class fragment_reviews extends Fragment {
         Intent intent = new Intent(getActivity(), fragment_reviews.class);
         dialog.setContentView(R.layout.addreview_dialog);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.background));
+            //dialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.background));
         }
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.setCancelable(false);
