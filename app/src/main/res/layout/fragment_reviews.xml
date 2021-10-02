@@ -1,106 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonAddReview"
-        android:layout_width="252dp"
-        android:layout_height="49dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginRight="54dp"
-        android:layout_marginBottom="90dp"
-        android:background="@drawable/round_bg"
-        android:gravity="center"
-        android:includeFontPadding="true"
-        android:text="Add Review"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <RatingBar
-        android:id="@+id/ratingBarDisplay"
-        android:layout_width="246dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="82dp"
-        android:layout_marginLeft="82dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="83dp"
-        android:layout_marginRight="83dp"
-        android:layout_marginBottom="10dp"
-        android:numStars="5"
-        android:progressBackgroundTint="#CCCCCC"
-        android:progressTint="#F5AE3D"
-        android:rating="4.0"
-        android:stepSize="0.5"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAllRvi"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAllStr"
+        <TextView
+            android:id="@+id/textViewAllStr"
+            android:layout_width="84dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="177dp"
+            android:layout_marginLeft="177dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="177dp"
+            android:layout_marginRight="177dp"
+            android:layout_marginBottom="5dp"
+            android:text="4.0"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ratingBarDisplay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RatingBar
+            android:id="@+id/ratingBarDisplay"
+            android:layout_width="246dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="82dp"
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="83dp"
+            android:layout_marginRight="83dp"
+            android:layout_marginBottom="10dp"
+            android:numStars="5"
+            android:progressBackgroundTint="#CCCCCC"
+            android:progressTint="#F5AE3D"
+            android:rating="4.0"
+            android:stepSize="0.5"
+            app:layout_constraintBottom_toTopOf="@+id/textViewAllRvi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAllStr"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textViewAllRvi"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginEnd="140dp"
+            android:layout_marginRight="140dp"
+            android:text="Based on 7 reviews."
+            android:textAppearance="?android:textAppearanceSmall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBarDisplay" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="70dp"
+        android:src="@drawable/ic_baseline_rate_review_24"
+        app:backgroundTint="@color/colorPrimary"
+        app:elevation="6dp"
+        app:fabSize="normal"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/textViewAllStr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginLeft="177dp"
-        android:layout_marginTop="95dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginRight="177dp"
-        android:layout_marginBottom="5dp"
-        android:text="4.0"
-        android:textColor="@color/colorPrimaryDark"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/ratingBarDisplay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewAllRvi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginLeft="176dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginRight="177dp"
-        android:layout_marginBottom="20dp"
-        android:text="Based on 7 reviews."
-        android:textAppearance="?android:textAppearanceSmall"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBarDisplay" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="370dp"
-        android:layout_height="309dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddReview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAllRvi" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
