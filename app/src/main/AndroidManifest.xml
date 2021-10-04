@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WellWork" >
         <activity
+            android:name=".editPrescription"
+            android:exported="true" />
+        <activity
+            android:name=".addPrescription"
+            android:exported="true" />
+        <activity
+            android:name=".myPrescription"
+            android:exported="true" />
+        <activity
+            android:name=".register"
+            android:exported="true" />
+        <activity
             android:name=".home"
             android:exported="true" />
         <activity
