@@ -27,6 +27,11 @@
             android:name=".home"
             android:exported="true" />
         <activity
+            android:name=".CardManagment"
+            android:exported="true" />
+        <activity android:name=".AddCard"/>
+        <activity android:name=".ManageCards" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
