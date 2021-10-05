@@ -10,17 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import java.util.ArrayList;
 
@@ -63,44 +58,14 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
                 //Get the ID of the user that currently sign in to the application
                 String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                //Query for find the node that should be delete according to the button press
-                Query deleteQuery = dbRef.child(userID)
-                        .orderByChild("name")
-                        .equalTo(order.getName());
+                //Remove Item
+                //dbRef.child(userID).child(order.getName()).removeValue();
 
-                //Use the Delete query
-                deleteQuery.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                        Toast.makeText(context, "Child was deleted!", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-                //Delete data using query
-                //deleteQuery.addListenerForSingleValueEvent(valueEventListener);
+                //Read the Medicine name from the local
+                Toast.makeText(context, "Name: " + order.getName(), Toast.LENGTH_SHORT).show();
 
                 //Insert dummy data for Presentation
-                /*insertMedicines("Paracetamol", "12", "10.00", "120.00");
+                /*insertMedicines("Vitamin D", "12", "10.00", "120.00");
                 insertMedicines("Vitamin C", "10", "50.00", "500.00");
                 insertMedicines("Vitamin A", "30", "20.00", "600.00");*/
             }
@@ -109,7 +74,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
 
     //Method for insert new user to the database
 
-    /*  Private void insertMedicines(String itemName, String qty, String unitPrice, String totalPrice) {
+      /*private void insertMedicines(String itemName, String qty, String unitPrice, String totalPrice) {
         Orders addOrder = new Orders(itemName, qty, unitPrice, totalPrice);
 
         String key = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -117,7 +82,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
         //Add to the DB
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("Prescription").child(key);
 
-        String medId = db.push().getKey().toString();
+        String medId = itemName;
 
         db.child(medId).setValue(addOrder);
     }*/
