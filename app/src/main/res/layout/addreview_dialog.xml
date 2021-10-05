@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AddReview"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textViewIntro"
+        android:layout_width="225dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center_horizontal"
+        android:text="How would you rate your experience with WellWork?"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="40dp"
+        android:numStars="5"
+        android:progressBackgroundTint="#CCCCCC"
+        android:progressTint="#F5AE3D"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTellus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewIntro"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textViewTellus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="186dp"
+        android:layout_marginRight="186dp"
+        android:layout_marginBottom="40dp"
+        android:text="Tell us a bit more about us..."
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+
+    <EditText
+        android:id="@+id/UserName"
+        android:layout_width="311dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginRight="49dp"
+        android:hint="Write your name..."
+        android:textAppearance="?android:textAppearanceMedium"
+        app:layout_constraintBottom_toTopOf="@+id/UserReview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTellus" />
+
+    <EditText
+        android:id="@+id/UserReview"
+        android:layout_width="313dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginRight="49dp"
+        android:hint="Write Review..."
+        android:textAppearance="?android:textAppearanceMedium"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTellus" />
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="252dp"
+        android:layout_height="49dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:text="Submit"
+        android:background="@drawable/round_bg"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:includeFontPadding="true"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UserReview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
