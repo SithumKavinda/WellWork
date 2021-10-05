@@ -46,12 +46,5 @@ public class addPrescription extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
-
-
-
     }
 }
