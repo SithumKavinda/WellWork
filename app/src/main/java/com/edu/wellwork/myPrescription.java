@@ -41,7 +41,7 @@ public class myPrescription extends AppCompatActivity {
         btnView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DbRef2 = FirebaseDatabase.getInstance().getReference().child("Prescription").child("-MkWDI1v55zkQDdiGa8T");
+                DbRef2 = FirebaseDatabase.getInstance().getReference().child("Prescription").child("-Ml5l7m8Q-SRr2aiKz-K");
                 DbRef2.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -70,7 +70,7 @@ public class myPrescription extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DbRef2 = FirebaseDatabase.getInstance().getReference().child("Prescription").child("-MkWDI1v55zkQDdiGa8T");
+                DbRef2 = FirebaseDatabase.getInstance().getReference().child("Prescription").child("-Ml5l7m8Q-SRr2aiKz-K");
                 DbRef2.removeValue();
                 Toast.makeText(myPrescription.this, "Prescription deleted!", Toast.LENGTH_SHORT).show();
                 finish();
