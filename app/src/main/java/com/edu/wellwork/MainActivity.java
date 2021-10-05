@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         confirmDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        confirmDialog.setCancelable(true);
+        confirmDialog.setCancelable(false);
         confirmDialog.getWindow().getAttributes().windowAnimations = R.style.animation;
 
         Button dialog_confirm = confirmDialog.findViewById(R.id.confirm);
