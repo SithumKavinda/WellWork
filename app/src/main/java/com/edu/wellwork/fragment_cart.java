@@ -1,6 +1,7 @@
 package com.edu.wellwork;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,8 +107,8 @@ public class fragment_cart extends Fragment {
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //This Toast should be replaced with the intent
-                Toast.makeText(context, "Proceed to Payment page", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, CardManagment.class);
+                startActivity(intent);
             }
         });
 

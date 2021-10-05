@@ -38,7 +38,10 @@
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/activity_order.xml" value="0.3046875" />
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/activity_prescription.xml" value="0.3046875" />
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/activity_register.xml" value="0.2921875" />
+        <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/card_activity.xml" value="0.3671875" />
+        <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/custom_card_details.xml" value="0.3671875" />
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/custom_dialog.xml" value="0.3046875" />
+        <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/custom_update_card_details.xml" value="0.3671875" />
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/fragment_cart.xml" value="0.2833333333333333" />
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/fragment_home.xml" value="0.3671875" />
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/fragment_prescription.xml" value="0.3671875" />
@@ -46,6 +49,8 @@
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/order.xml" value="0.3671875" />
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/layout/register_card.xml" value="0.3046875" />
         <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/menu/menu_navigation.xml" value="0.3046875" />
+        <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.2234375" />
+        <entry key="..\:/Education/Year 02/Semester 02/04 IT2010 Mobile Application Development/Project/WellWorks/app/src/main/res/mipmap-anydpi-v26/ic_logo_round.xml" value="0.2234375" />
         <entry key="..\:/Users/vihaa/WellWork/app/src/main/res/drawable/ic_addicon.xml" value="0.3828125" />
         <entry key="..\:/Users/vihaa/WellWork/app/src/main/res/drawable/ic_prescription.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/vihaa/WellWork/app/src/main/res/drawable/ic_pview.xml" value="0.3828125" />
