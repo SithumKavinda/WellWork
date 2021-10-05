@@ -58,6 +58,10 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
             @Override
             public boolean onLongClick(View view) {
 
+               /* insertMedicines("Vitamin D", "12", "10.00", "120.00");
+                insertMedicines("Vitamin C", "10", "50.00", "500.00");
+                insertMedicines("Vitamin B", "30", "20.00", "600.00");*/
+
                 Toast.makeText(context, "Pressed: " + order.getName(), Toast.LENGTH_SHORT).show();
 
                 //Show custom dialog box
@@ -78,8 +82,8 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
                 dialogDelete.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 dialogDelete.setCancelable(false);
                 dialogDelete.getWindow().getAttributes().windowAnimations = R.style.animation;
-                dialog_text.setText("Are you sure you want to delete " + order.getName() + " ?");
-                //dialog_img.setBackground
+                dialog_text.setText("Remove " + order.getName() + " ?");
+                dialog_img.setImageResource(R.drawable.ic_dialog_delete);
 
                 //Show dialod box
                 dialogDelete.show();
@@ -101,6 +105,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
                                     public void onComplete(@NonNull Task<Void> task) {
                                         pbDelete.setVisibility(View.GONE);
                                         Toast.makeText(context, order.getName() + " Removed", Toast.LENGTH_SHORT).show();
+                                        dialogDelete.dismiss();
                                     }
                                 });
                     }
@@ -116,21 +121,11 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
                 return false;
             }
         });
-
-        holder.btn_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Insert dummy data for Presentation
-                /*insertMedicines("Vitamin D", "12", "10.00", "120.00");
-                insertMedicines("Vitamin C", "10", "50.00", "500.00");
-                insertMedicines("Vitamin B", "30", "20.00", "600.00");*/
-            }
-        });
     }
 
     //Method for insert new user to the database
 
-      /*private void insertMedicines(String itemName, String qty, String unitPrice, String totalPrice) {
+      private void insertMedicines(String itemName, String qty, String unitPrice, String totalPrice) {
         Orders addOrder = new Orders(itemName, qty, unitPrice, totalPrice);
 
         String key = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -141,7 +136,7 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
         String medId = itemName;
 
         db.child(medId).setValue(addOrder);
-    }*/
+    }
 
     @Override
     public int getItemCount() {
@@ -151,7 +146,6 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView iname, qty, unitPrice, totPrice;
-        Button btn_delete;
         LinearLayout orderCard;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -161,7 +155,6 @@ public class Cart_adapter extends RecyclerView.Adapter<Cart_adapter.MyViewHolder
             qty = itemView.findViewById(R.id.tv_qty);
             unitPrice = itemView.findViewById(R.id.tv_unitPrice);
             totPrice = itemView.findViewById(R.id.tv_totalPrice);
-            btn_delete = itemView.findViewById(R.id.btn_remove);
             orderCard = itemView.findViewById(R.id.layout_order);
         }
     }

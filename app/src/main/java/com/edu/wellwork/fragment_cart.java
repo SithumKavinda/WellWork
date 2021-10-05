@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.ybq.android.spinkit.SpinKitView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -77,6 +79,9 @@ public class fragment_cart extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                //Solution for repeat data after db changed
+                list.clear();
+
                 //Iterate the function to read all the data until the last data of the node
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Orders order = dataSnapshot.getValue(Orders.class);
@@ -107,8 +112,24 @@ public class fragment_cart extends Fragment {
         btn_pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, CardManagment.class);
-                startActivity(intent);
+                //Insert grand total into the database
+                pb_cart.setVisibility(View.VISIBLE);    //Progress bar appears
+
+                String key = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                database = FirebaseDatabase.getInstance().getReference("Payment").child(key);
+
+                database.setValue(txt_grand_total.getText())
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                //Get rid of Progress bar
+                                pb_cart.setVisibility(View.GONE);
+
+                                //Start payment Function
+                                Intent intent = new Intent(context, CardManagment.class);
+                                startActivity(intent);
+                            }
+                        });
             }
         });
 

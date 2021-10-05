@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class home extends AppCompatActivity {
 
     BottomNavigationView bottomNav;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
