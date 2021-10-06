@@ -37,7 +37,7 @@ public class editPrescription extends AppCompatActivity {
             hashMap.put("med4",et_eM4.getText().toString());
             hashMap.put("med5",et_eM5.getText().toString());
 
-            up.update("-MkWDI1v55zkQDdiGa8T", hashMap).addOnSuccessListener(suc ->{
+            up.update("-Ml5l7m8Q-SRr2aiKz-K", hashMap).addOnSuccessListener(suc ->{
                 Toast.makeText(this, "Record is updated", Toast.LENGTH_SHORT).show();
             }).addOnFailureListener(er -> {
                 Toast.makeText(this, ""+er.getMessage(), Toast.LENGTH_SHORT).show();
