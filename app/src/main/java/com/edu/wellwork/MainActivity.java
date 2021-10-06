@@ -1,5 +1,7 @@
 /*References
+* IT20050344 - Eshwarage L.S.k
 * Custom Progress bar - https://github.com/ybq/Android-SpinKit
+* Custom Splash Animation - https://github.com/airbnb/lottie-android
 */
 
 
@@ -9,17 +11,20 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -40,6 +45,36 @@ public class MainActivity extends AppCompatActivity {
     Dialog confirmDialog, registerDialog;
     SpinKitView progressBar_login;
 
+    View back1, back2;
+    LottieAnimationView lottieAnimationView;
+    Handler handler;
+
+    private void showButtons(){
+        handler = new Handler();
+
+        handler.postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                ((Button) findViewById(R.id.btn_login)).setVisibility(View.VISIBLE);
+            }
+        }, 4500);
+
+        handler.postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                ((TextView) findViewById(R.id.tv_callName)).setVisibility(View.VISIBLE);
+            }
+        }, 5100);
+
+        handler.postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                ((ImageView) findViewById(R.id.imageView)).setVisibility(View.VISIBLE);
+            }
+        }, 5100);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +86,22 @@ public class MainActivity extends AppCompatActivity {
         register = findViewById(R.id.Register);
         progressBar_login = findViewById(R.id.pb_login);
         mAuth = FirebaseAuth.getInstance();
+        back1 = findViewById(R.id.backAnim1);
+        back2 = findViewById(R.id.backAnim2);
+        lottieAnimationView = findViewById(R.id.lottie);
+
+        //Bring to front
+        back1.bringToFront();
+        back2.bringToFront();
+        lottieAnimationView.bringToFront();
+
+        //Splash animations
+        back1.animate().translationY(-1600).setDuration(1000).setStartDelay(4000);
+        back2.animate().translationY(-1600).setDuration(1000).setStartDelay(4000);
+        lottieAnimationView.animate().translationY(1600).setDuration(1000).setStartDelay(4000);
+
+        //Show button
+        showButtons();
 
         //Confirm Dialog view
         confirmDialog = new Dialog(MainActivity.this);
@@ -208,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        openHomePage();
+                                        openHome();
                                         progressBar_login.setVisibility(View.GONE);
                                     }
                                     else{
@@ -236,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Form navigation methods
-    private void openHomePage() {
+    private void openHome() {
         Intent home = new Intent(this, home.class);
         startActivity(home);
     }

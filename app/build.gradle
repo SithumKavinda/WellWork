@@ -42,4 +42,5 @@ dependencies {
 
     //User added dependencies
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.airbnb.android:lottie:4.2.0'
 }
